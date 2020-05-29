@@ -6,6 +6,9 @@
 
 using namespace std;
 
+const string DEFAULT_VALUE = "default name value";
+const int DEFAULT_LENGTH = 5;
+
 class CTable
 {
 public:
@@ -17,6 +20,11 @@ public:
     bool bSetNewSize(int iTableLen);
     CTable *pcClone();
     int i_getTableSize();
+    void vPrint();
+    void vSetValueAt(int iOffset, int iNewVal);
+    int iGetValue(int iOffset);
+//    CTable operator=(CTable pcOther);
+    CTable operator+(CTable pcOther);
 
 private:
     string s_name;

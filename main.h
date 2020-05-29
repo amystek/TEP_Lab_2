@@ -10,4 +10,7 @@ using namespace std;
 void  v_mod_tab(CTable  *pcTab, int iNewSize);
 void  v_mod_tab(CTable  cTab, int iNewSize);
 
+void v_lista2();
+void v_lista3();
+
 #endif //LAB_2_MAIN_H

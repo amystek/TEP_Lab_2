@@ -1,13 +1,10 @@
 #include "CTable.h"
 
-string DEFAULT_VALUE = "default name value";
-int DEFAULT_LENGHT = 5;
-
 CTable::CTable()
 {
     s_name = DEFAULT_VALUE;
-    i_tab_length = DEFAULT_LENGHT;
-    pi_table = new int[DEFAULT_LENGHT];
+    i_tab_length = DEFAULT_LENGTH;
+    pi_table = new int[DEFAULT_LENGTH];
     cout << "bezp:'" << s_name << "'" << endl;
 } //CTable::CTable()
 
@@ -99,9 +96,67 @@ CTable *CTable::pcClone()
 
 } //CTable *CTable::pcClone()
 
-int CTable::i_getTableSize() {
+int CTable::i_getTableSize()
+{
     return i_tab_length;
-}
+} //int CTable::i_getTableSize()
+
+void CTable::vPrint()
+{
+    cout << "CTable size:" << i_tab_length << ", " << s_name << ": ";
+    for (int ii = 0; ii < i_tab_length; ii++)
+    {
+        cout << pi_table[ii] << " ";
+    } //for (int ii = 0; ii < i_tab_length; ii++)
+    cout << endl;
+} //void CTable::vPrint()
+
+void CTable::vSetValueAt(int iOffset, int iNewVal)
+{
+    if (iOffset >= 0 && iOffset <= i_tab_length)
+    {
+        pi_table[iOffset] = iNewVal;
+    } //if (iOffset < 0 | iOffset > i_tab_length)
+} //void CTable::vSetValueAt(int iOffset, int iNewVal)
+
+int CTable::iGetValue(int iOffset)
+{
+    if (iOffset < i_tab_length)
+    {
+        return pi_table[iOffset];
+    } //if (iOffset < i_tab_length)
+
+    return 0;
+} //int CTable::iGetValue(int iOffset)
+
+//CTable CTable::operator=(CTable pcOther)
+//{
+//    i_tab_length = pcOther.i_getTableSize();
+//    pi_table = pcOther.pi_table;
+//    pcOther.pi_table = NULL;
+//} //CTable operator=(CTable pcOther)
+
+CTable CTable::operator+(CTable pcOther)
+{
+    int i_new_tab_lenght = i_tab_length + pcOther.i_getTableSize();
+    CTable c_tab("concatenation", i_new_tab_lenght);
+
+    for (int ii = 0; ii < i_tab_length; ii++)
+    {
+        c_tab.vSetValueAt(ii, pi_table[ii]);
+    } //for (int ii = 0; ii < i_tab_length; ii++)
+
+    for (int ii = i_tab_length; ii < i_new_tab_lenght ; ii++)
+    {
+        c_tab.vSetValueAt(ii, pcOther.iGetValue(ii - i_tab_length));
+    }
+
+    return c_tab;
+} //CTable CTable::operator+(CTable pcOther)
+
+
+
+
 
 
 
