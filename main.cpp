@@ -86,6 +86,7 @@ void v_lista3()
     c_tab_1.vPrint();
 
     //Zadanie 4
+    //TODO: poprawić operator+
     cout << endl << "c_tab_0 + c_tab_1" << endl;
     c_tab_0.operator+(c_tab_1);
     c_tab_0.vPrint();
